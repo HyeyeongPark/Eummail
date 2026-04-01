@@ -628,7 +628,7 @@ function writePage() {
           <div class="send-summary-box">
             <button type="button" class="toggle-row toggle-quiz-button${state.includeQuiz ? " is-on" : ""}">
               <div>
-                <strong>편지 문구 하단에 퀴즈 추가하기</strong>
+                <strong>편지 하단에 퀴즈 추가하기</strong>
                 <span class="toggle-subtext">추가 비용 없이 같은 1장 안에 함께 구성됩니다.</span>
               </div>
               <span class="toggle-switch"><span class="toggle-knob"></span></span>
