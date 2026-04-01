@@ -98,6 +98,7 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 844px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -161,12 +162,10 @@ img {
   min-height: 0;
   overflow-y: auto;
   padding: 16px;
+  padding-bottom: 140px;
   background: var(--page);
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-}
-
-.screen-body {
   scrollbar-width: thin;
   scrollbar-color: rgba(214, 186, 196, 0.7) transparent;
 }
@@ -182,6 +181,10 @@ img {
 .screen-body::-webkit-scrollbar-thumb {
   background: rgba(214, 186, 196, 0.7);
   border-radius: 999px;
+}
+
+.screen-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 163, 175, 0.9);
 }
 
 .page-stack {
@@ -446,13 +449,13 @@ img {
 
 .bottom-nav {
   position: absolute;
-  left: 50%;
+  left: 16px;
+  right: 16px;
   bottom: 16px;
-  transform: translateX(-50%);
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
-  width: calc(100% - 32px);
   padding: 8px;
   border: 1px solid var(--border);
   border-radius: 28px;
@@ -525,22 +528,11 @@ img {
     padding: 16px;
   }
 
-  .app-intro h1 {
-    font-size: 28px;
-  }
-}
-
-
-@media (max-width: 640px) {
-  .app-bg {
-    padding: 16px;
-  }
-
-  .app-intro h1 {
-    font-size: 28px;
-  }
-
   .phone-screen {
     height: min(844px, calc(100vh - 32px));
+  }
+
+  .app-intro h1 {
+    font-size: 28px;
   }
 }
