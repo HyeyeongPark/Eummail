@@ -22,9 +22,8 @@ const sentHistory = [
 
 const suggestions = [
   "할머니, 날씨가 많이 풀렸어요. 사진 보시고 오늘도 웃으셨으면 좋겠어요.",
-  "엄마, 요즘 많이 바쁘셨죠? 그래도 늘 생각하고 있어요. 건강 잘 챙기세요.",
+  "엄마, 요즘 많이 바빴죠? 그래도 늘 생각하고 있어요. 건강 잘 챙기세요.",
   "할머니, 다음에 만나면 같이 맛있는 거 먹어요. 보고 싶은 마음을 사진에 담아 보냅니다.",
-  "엄마, 오늘도 식사 잘 챙겨 드시고 따뜻한 봄바람처럼 편안한 하루 보내세요.",
 ];
 
 const quizCatalog = {
@@ -93,7 +92,7 @@ const quizCatalog = {
       title: "추억 회상 퀴즈",
       desc: "계절과 음식, 일상을 떠올리게 하는 회상형 질문",
       level: "쉬움",
-      promptLines: ["가을에 많이 떠오르는 대표 과일은?", "힌트: 홍시로도 먹는 과일이에요."],
+      promptLines: ["가을에 많이 먹는 대표 간식은?", "힌트: 군고구마, 군밤처럼 떠올려 보세요."],
       answer: "감",
     },
     {
@@ -111,7 +110,7 @@ const quizCatalog = {
       title: "가족 이야기 퀴즈",
       desc: "가족과 계절 추억을 연결해 답하는 따뜻한 문제",
       level: "보통",
-      promptLines: ["명절 아침에 가장 먼저 떠오르는 음식은?", "힌트: 뜨끈한 국물이 있는 메뉴예요."],
+      promptLines: ["명절 아침에 가장 먼저 떠오르는 음식은?", "힌트: 온 가족이 함께 먹던 메뉴예요."],
       answer: "떡국",
     },
   ],
@@ -120,34 +119,41 @@ const quizCatalog = {
       key: "cross-spring",
       mode: "crossword",
       title: "봄날 십자낱말",
-      desc: "칸 수와 정답 글자 수가 정확히 맞는 쉬운 십자낱말",
+      desc: "짧은 단어를 격자에 채우는 십자낱말형 퀴즈",
       level: "쉬움",
-      rows: 4,
-      cols: 5,
-      note: "빈칸 수만큼 글자를 떠올려 보세요.",
-      words: [
-        { number: 1, dir: "across", row: 0, col: 0, answer: "봄비", clue: "봄에 자주 떠오르는 비" },
-        { number: 2, dir: "down", row: 0, col: 1, answer: "비누", clue: "손 씻을 때 쓰는 것" },
-        { number: 3, dir: "down", row: 0, col: 4, answer: "바람", clue: "살랑살랑 부는 공기" },
-        { number: 4, dir: "across", row: 2, col: 2, answer: "꽃길", clue: "꽃이 핀 예쁜 길" },
+      note: "그림처럼 빈칸을 보고 단어를 떠올려 보세요.",
+      grid: [
+        [{ label: "1" }, {}, { blocked: true }, { label: "2" }],
+        [{}, { blocked: true }, {}, {}],
+        [{ blocked: true }, { label: "3" }, {}, { blocked: true }],
+        [{}, {}, {}, {}],
       ],
+      clues: [
+        "1 가로: 꽃이 피는 계절",
+        "2 세로: 하늘에서 내리는 물방울",
+        "3 가로: 향기가 나는 식물",
+      ],
+      answer: "1 봄 · 2 비 · 3 꽃",
     },
     {
-      key: "cross-memory",
+      key: "cross-kitchen",
       mode: "crossword",
-      title: "추억 십자낱말",
-      desc: "칸 수와 단어 길이가 자연스럽게 맞는 회상형 십자낱말",
+      title: "생활 십자낱말",
+      desc: "집에서 자주 보는 물건 이름으로 푸는 격자형 퀴즈",
       level: "보통",
-      rows: 4,
-      cols: 5,
-      note: "가로와 세로 칸 수를 보고 천천히 맞혀 보세요.",
-      words: [
-        { number: 1, dir: "across", row: 0, col: 0, answer: "웃음", clue: "즐거울 때 짓는 표정" },
-        { number: 2, dir: "across", row: 0, col: 3, answer: "시장", clue: "장 보러 가는 곳" },
-        { number: 3, dir: "down", row: 0, col: 1, answer: "음악", clue: "노래와 연주를 함께 부르는 말" },
-        { number: 4, dir: "down", row: 0, col: 4, answer: "장화", clue: "비 오는 날 신는 신발" },
-        { number: 5, dir: "across", row: 2, col: 2, answer: "추억", clue: "지난날을 떠올리는 기억" },
+      note: "짧은 단어 위주라 부담 없이 함께 풀기 좋아요.",
+      grid: [
+        [{ label: "1" }, {}, {}, { blocked: true }],
+        [{ blocked: true }, {}, { blocked: true }, { label: "2" }],
+        [{ label: "3" }, {}, {}, {}],
+        [{ blocked: true }, {}, { blocked: true }, {}],
       ],
+      clues: [
+        "1 가로: 밥을 먹을 때 쓰는 도구",
+        "2 세로: 손을 씻을 때 쓰는 것",
+        "3 가로: 시간을 보는 물건",
+      ],
+      answer: "1 젓가락 · 2 비누 · 3 시계",
     },
   ],
 };
@@ -177,7 +183,6 @@ function runDevChecks() {
     { name: "sentHistory", pass: sentHistory.length > 0 },
     { name: "suggestions", pass: suggestions.length > 0 },
     { name: "quizCatalog", pass: Object.keys(quizCatalog).length > 0 },
-    { name: "crosswordLayout", pass: (quizCatalog.crossword || []).every(validateCrosswordLayout) },
     { name: "theme.accent", pass: Boolean(theme.accent) },
   ];
 
@@ -219,159 +224,12 @@ function getSelectedQuiz() {
   return getQuizItemsByType(state.quizType).find((item) => item.id === state.quizId) || getQuizItemsByType(state.quizType)[0];
 }
 
-function getAnswerLength(answer) {
-  return Array.from(String(answer || "").trim()).length;
-}
-
-function splitQuizContent(quiz) {
-  if (!quiz) {
-    return { promptLines: [], answerLine: "" };
-  }
-
-  if (quiz.mode === "crossword") {
-    const clueLines = quiz.words.map((word) => {
-      const dirLabel = word.dir === "across" ? "가로" : "세로";
-      return `${word.number} ${dirLabel}: ${word.clue} (${getAnswerLength(word.answer)}칸)`;
-    });
-
-    return {
-      promptLines: [quiz.note, ...clueLines],
-      answerLine: `정답: ${quiz.words.map((word) => `${word.number}. ${word.answer}`).join(" / ")}`,
-    };
-  }
-
-  return {
-    promptLines: quiz.promptLines,
-    answerLine: `정답: ${quiz.answer}`,
-  };
-}
-
-function buildCrosswordGrid(quiz) {
-  const rows = quiz.rows;
-  const cols = quiz.cols;
-  const grid = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => ({ blocked: true, number: "", letter: "" }))
-  );
-
-  quiz.words.forEach((word) => {
-    const letters = Array.from(word.answer);
-    letters.forEach((letter, index) => {
-      const row = word.row + (word.dir === "down" ? index : 0);
-      const col = word.col + (word.dir === "across" ? index : 0);
-      if (row >= rows || col >= cols) {
-        console.warn("[E음우편] crossword bounds error:", quiz.key, word.number, word.answer);
-        return;
-      }
-      const cell = grid[row][col];
-      if (!cell.blocked && cell.letter && cell.letter !== letter) {
-        console.warn("[E음우편] crossword conflict:", quiz.key, word.number, word.answer, letter);
-      }
-      grid[row][col] = {
-        blocked: false,
-        number: index === 0 ? String(word.number) : cell.number,
-        letter,
-      };
-    });
-  });
-
-  return grid;
-}
-
-function validateCrosswordLayout(quiz) {
-  const grid = buildCrosswordGrid(quiz);
-
-  return quiz.words.every((word) => {
-    const length = getAnswerLength(word.answer);
-    const beforeRow = word.row - (word.dir === "down" ? 1 : 0);
-    const beforeCol = word.col - (word.dir === "across" ? 1 : 0);
-    const afterRow = word.row + (word.dir === "down" ? length : 0);
-    const afterCol = word.col + (word.dir === "across" ? length : 0);
-
-    const hasBeforeCell = beforeRow >= 0 && beforeCol >= 0 && beforeRow < quiz.rows && beforeCol < quiz.cols && !grid[beforeRow][beforeCol].blocked;
-    const hasAfterCell = afterRow >= 0 && afterCol >= 0 && afterRow < quiz.rows && afterCol < quiz.cols && !grid[afterRow][afterCol].blocked;
-
-    if (hasBeforeCell || hasAfterCell) {
-      console.warn("[E음우편] crossword length mismatch:", quiz.key, word.number, word.answer);
-      return false;
-    }
-
-    return true;
-  });
-}
-
-function renderCrosswordGrid(quiz, variant = "card") {
-  const grid = buildCrosswordGrid(quiz);
-  const sizeClass = variant === "letter" ? " is-letter" : "";
-
-  return `
-    <div class="crossword-grid${sizeClass}" style="grid-template-columns: repeat(${quiz.cols}, 1fr);">
-      ${grid
-        .flat()
-        .map((cell) => {
-          if (cell.blocked) {
-            return `<div class="crossword-cell is-blocked"></div>`;
-          }
-          return `
-            <div class="crossword-cell">
-              ${cell.number ? `<span class="crossword-number">${escapeHtml(cell.number)}</span>` : ""}
-              <span class="crossword-blank"></span>
-            </div>
-          `;
-        })
-        .join("")}
-    </div>
-  `;
-}
-
-function renderCrosswordClues(quiz, variant = "card") {
-  const className = variant === "letter" ? "letter-clue-list" : "crossword-clue-list";
-  return `
-    <div class="${className}">
-      ${quiz.words
-        .map((word) => {
-          const dirLabel = word.dir === "across" ? "가로" : "세로";
-          return `<div class="crossword-clue-item">${escapeHtml(`${word.number} ${dirLabel}: ${word.clue} (${getAnswerLength(word.answer)}칸)`)}</div>`;
-        })
-        .join("")}
-    </div>
-  `;
-}
-
-function renderQuizPreview(quiz, variant = "card") {
-  if (quiz.mode === "crossword") {
-    return `
-      <div class="crossword-preview ${variant === "letter" ? "is-letter" : ""}">
-        <div class="crossword-note">${escapeHtml(quiz.note)}</div>
-        ${renderCrosswordGrid(quiz, variant)}
-        ${renderCrosswordClues(quiz, variant)}
-      </div>
-    `;
-  }
-
-  return `
-    <div class="quiz-preview">
-      ${quiz.promptLines.map((line) => `<div class="quiz-line">${escapeHtml(line)}</div>`).join("")}
-    </div>
-  `;
-}
-
-function getQuizSummary() {
-  const selectedQuiz = getSelectedQuiz();
-  if (!state.includeQuiz) {
-    return "안부문구만 먼저 작성하고, 퀴즈는 필요할 때만 아래에 추가할 수 있어요.";
-  }
-  if (state.includeQuizAnswer) {
-    return `${selectedQuiz.title} 문제를 편지 하단에 넣고, 정답은 맨 아래 별도 칸에 함께 보냅니다.`;
-  }
-  return `${selectedQuiz.title} 문제만 편지 하단에 넣고, 정답은 보내지 않아요.`;
-}
-
 function getScreenMeta() {
   switch (state.page) {
     case "write":
       return {
         title: "편지 작성",
-        subtitle: "메시지를 먼저 쓰고, 필요하면 아래에서 AI 안부문구 추천과 두뇌퀴즈를 추가하세요.",
+        subtitle: "가족에게 마음을 담아 편하게 적어보세요.",
       };
     case "preview":
       return {
@@ -397,7 +255,7 @@ function getScreenMeta() {
     default:
       return {
         title: "마음을 잇다",
-        subtitle: "E음편지로 안부문구와 두뇌퀴즈를 같은 1장 안에 함께 담아보세요.",
+        subtitle: "E음편지로 안부문구 하단에 두뇌퀴즈를 함께 담아보세요.",
       };
   }
 }
@@ -406,9 +264,124 @@ function badge(text) {
   return `<span class="status-badge">${escapeHtml(text)}</span>`;
 }
 
+function renderCrosswordGrid(grid, extraClass = "") {
+  return `
+    <div class="crossword-grid ${extraClass}">
+      ${grid
+        .map(
+          (row) => `
+            <div class="crossword-row">
+              ${row
+                .map((cell) => {
+                  if (cell.blocked) {
+                    return `<div class="crossword-cell is-blocked"></div>`;
+                  }
+                  return `
+                    <div class="crossword-cell ${cell.label ? "has-label" : ""}">
+                      ${cell.label ? `<span class="cell-label">${escapeHtml(cell.label)}</span>` : ""}
+                    </div>
+                  `;
+                })
+                .join("")}
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderQuizTypeChips() {
+  return quizTypeMeta
+    .map((type) => {
+      const selectedClass = state.quizType === type.id ? " is-selected" : "";
+      return `
+        <button type="button" class="filter-chip quiz-type-chip${selectedClass}" data-type="${type.id}">
+          ${escapeHtml(type.label)}
+        </button>
+      `;
+    })
+    .join("");
+}
+
+function renderQuizCards() {
+  return getQuizItemsByType(state.quizType)
+    .map((quiz) => {
+      const selectedClass = quiz.id === state.quizId ? " is-selected" : "";
+      const previewHtml =
+        quiz.mode === "crossword"
+          ? `
+            <div class="quiz-preview crossword-preview-box">
+              ${renderCrosswordGrid(quiz.grid)}
+              <div class="quiz-clue-list">
+                ${quiz.clues.map((clue) => `<div class="quiz-line">${escapeHtml(clue)}</div>`).join("")}
+              </div>
+            </div>
+          `
+          : `
+            <div class="quiz-preview">
+              ${quiz.promptLines.map((line) => `<div class="quiz-line">${escapeHtml(line)}</div>`).join("")}
+            </div>
+          `;
+
+      return `
+        <button type="button" class="quiz-card quiz-option${selectedClass}" data-id="${quiz.id}">
+          <div class="quiz-header-row">
+            <div>
+              <div class="history-title">${escapeHtml(quiz.title)}</div>
+              <div class="option-desc">${escapeHtml(quiz.desc)}</div>
+            </div>
+            <span class="hero-badge">${escapeHtml(quiz.level)}</span>
+          </div>
+          ${previewHtml}
+          <div class="quiz-answer-note">${
+            quiz.mode === "crossword"
+              ? `정답 예시: ${escapeHtml(quiz.answer)}`
+              : `정답 예시: ${escapeHtml(quiz.answer)}`
+          }</div>
+        </button>
+      `;
+    })
+    .join("");
+}
+
+function renderLetterQuizBlock(quiz) {
+  if (!quiz) return "";
+  if (quiz.mode === "crossword") {
+    return `
+      <div class="letter-quiz-box">
+        <div class="letter-quiz-title">함께 풀어보는 AI 두뇌퀴즈 · ${escapeHtml(quiz.title)}</div>
+        <div class="letter-quiz-note">${escapeHtml(quiz.note)}</div>
+        ${renderCrosswordGrid(quiz.grid, "letter-crossword-grid")}
+        <div class="letter-clue-list">
+          ${quiz.clues.map((clue) => `<div class="letter-clue-line">${escapeHtml(clue)}</div>`).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="letter-quiz-box">
+      <div class="letter-quiz-title">함께 풀어보는 AI 두뇌퀴즈 · ${escapeHtml(quiz.title)}</div>
+      <div class="letter-clue-list">
+        ${quiz.promptLines.map((line) => `<div class="letter-clue-line">${escapeHtml(line)}</div>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function getFinalLetterData() {
+  const recipient = getCurrentRecipient();
+  const selectedQuiz = getSelectedQuiz();
+  return {
+    recipient,
+    selectedQuiz,
+    quizSummary: state.includeQuiz ? selectedQuiz.title : "선택 안 함",
+  };
+}
+
 function homePage() {
   const selectedQuiz = getSelectedQuiz();
-
   return `
     <div class="page-stack">
       <article class="card hero-card">
@@ -430,7 +403,7 @@ function homePage() {
           <div class="card-body">
             <div class="icon">✎</div>
             <div class="history-title" style="margin-top: 14px;">새 편지 작성</div>
-            <div class="option-desc">사진, 메시지, 퀴즈를 1장으로 구성</div>
+            <div class="option-desc">사진, 안부, 퀴즈를 1장으로 구성</div>
           </div>
         </button>
 
@@ -461,7 +434,7 @@ function homePage() {
           <div class="section-title-row">
             <div>
               <h3 class="card-title">함께 보낼 수 있는 AI 두뇌퀴즈</h3>
-              <p class="subtext">낱말퍼즐, 속담퀴즈, 회상형 질문, 십자낱말까지 자동 추천합니다.</p>
+              <p class="subtext">낱말퍼즐, 속담퀴즈, 회상형 질문, 십자낱말형 퀴즈까지 자동 추천합니다.</p>
             </div>
             <button type="button" class="link-button page-link" data-page="write">바로 선택</button>
           </div>
@@ -496,44 +469,12 @@ function homePage() {
   `;
 }
 
-function renderQuizTypeChips() {
-  return quizTypeMeta
-    .map((type) => {
-      const selectedClass = state.quizType === type.id ? " is-selected" : "";
-      return `
-        <button type="button" class="filter-chip quiz-type-chip${selectedClass}" data-type="${type.id}">
-          ${escapeHtml(type.label)}
-        </button>
-      `;
-    })
-    .join("");
-}
-
-function renderQuizCards() {
-  return getQuizItemsByType(state.quizType)
-    .map((quiz) => {
-      const selectedClass = quiz.id === state.quizId ? " is-selected" : "";
-      const { answerLine } = splitQuizContent(quiz);
-      return `
-        <button type="button" class="quiz-card quiz-option${selectedClass}" data-id="${quiz.id}">
-          <div class="quiz-header-row">
-            <div>
-              <div class="history-title">${escapeHtml(quiz.title)}</div>
-              <div class="option-desc">${escapeHtml(quiz.desc)}</div>
-            </div>
-            <span class="hero-badge">${escapeHtml(quiz.level)}</span>
-          </div>
-          ${renderQuizPreview(quiz)}
-          <div class="quiz-answer-note">정답은 바로 아래에 붙지 않아요 · ${escapeHtml(answerLine)}</div>
-        </button>
-      `;
-    })
-    .join("");
-}
-
 function writePage() {
   const currentRecipient = getCurrentRecipient();
-  const panelOpenClass = state.suggestionPanelOpen ? " is-open" : "";
+  const selectedQuiz = getSelectedQuiz();
+  const quizSummary = state.includeQuiz
+    ? `${selectedQuiz.title}이(가) 편지 문구 하단에 추가됩니다.${state.includeQuizAnswer ? " 정답도 함께 보냅니다." : " 정답은 제외됩니다."}`
+    : "안부문구만 먼저 작성하고, 퀴즈는 필요할 때만 아래에 추가할 수 있어요.";
 
   return `
     <div class="page-stack">
@@ -575,44 +516,48 @@ function writePage() {
 
       <article class="card">
         <div class="card-body">
-          <button type="button" class="accordion-trigger suggestion-panel-toggle${panelOpenClass}">
-            <div>
-              <div class="card-title">AI 안부 문구 추천</div>
-              <div class="subtext">필요할 때만 열어서 문구를 골라 메시지에 반영할 수 있어요.</div>
-            </div>
-            <span class="accordion-chevron"></span>
-          </button>
-          ${state.suggestionPanelOpen ? `
-            <div class="suggestion-list accordion-panel">
-              ${suggestions
-                .map(
-                  (suggestion) => `
-                    <button type="button" class="suggestion-item suggestion-option" data-message="${escapeHtml(suggestion)}">
-                      ${escapeHtml(suggestion)}
-                    </button>
-                  `
-                )
-                .join("")}
-            </div>
-          ` : ""}
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-body">
           <h3 class="card-title">메시지 작성</h3>
           <textarea id="messageInput" class="message-textarea" placeholder="${escapeHtml(currentRecipient.name)}께 보낼 안부를 적어보세요.">${escapeHtml(state.message)}</textarea>
         </div>
       </article>
 
-      
+      <article class="card">
+        <div class="card-body">
+          <button type="button" class="collapse-trigger suggestion-toggle-button ${state.suggestionPanelOpen ? "is-open" : ""}">
+            <span>
+              <span class="card-title">AI 안부 문구 추천</span>
+              <span class="toggle-subtext">눌러서 추천 문구 열기</span>
+            </span>
+            <span class="collapse-arrow">${state.suggestionPanelOpen ? "－" : "＋"}</span>
+          </button>
+          ${
+            state.suggestionPanelOpen
+              ? `
+                <div class="collapsible-body">
+                  <div class="suggestion-list">
+                    ${suggestions
+                      .map(
+                        (suggestion) => `
+                          <button type="button" class="suggestion-item suggestion-option" data-message="${escapeHtml(suggestion)}">
+                            ${escapeHtml(suggestion)}
+                          </button>
+                        `
+                      )
+                      .join("")}
+                  </div>
+                </div>
+              `
+              : ""
+          }
+        </div>
+      </article>
 
       <article class="card">
         <div class="card-body">
           <div class="section-title-row">
             <div>
               <h3 class="card-title">AI 두뇌퀴즈 추천</h3>
-              <p class="subtext">텍스트형 문제와 십자낱말을 골라 편지 문구 하단에 넣을 수 있어요.</p>
+              <p class="subtext">텍스트형 문제와 십자낱말형 예시를 모두 보여드려요.</p>
             </div>
             <button type="button" class="link-button regenerate-quiz-button">다시 추천</button>
           </div>
@@ -626,25 +571,29 @@ function writePage() {
           </div>
 
           <div class="send-summary-box">
-            <button type="button" class="toggle-row toggle-quiz-button${state.includeQuiz ? " is-on" : ""}">
-              <div>
-                <strong>편지 하단에 퀴즈 추가하기</strong>
-                <span class="toggle-subtext">추가 비용 없이 같은 1장 안에 함께 구성됩니다.</span>
-              </div>
+            <button type="button" class="toggle-row toggle-quiz-button ${state.includeQuiz ? "is-on" : ""}">
+              <span>
+                <strong>편지 문구 하단에 퀴즈 추가하기</strong>
+                <span class="toggle-subtext">추가비용 없이 같은 1장 안에 함께 구성해요.</span>
+              </span>
               <span class="toggle-switch"><span class="toggle-knob"></span></span>
             </button>
 
-            ${state.includeQuiz ? `
-              <button type="button" class="toggle-row toggle-answer-button${state.includeQuizAnswer ? " is-on" : ""}" style="margin-top: 10px;">
-                <div>
-                  <strong>퀴즈 정답도 함께 보내기</strong>
-                  <span class="toggle-subtext">정답은 문제 바로 아래가 아니라 편지 맨 아래 별도 칸에 넣어요.</span>
-                </div>
-                <span class="toggle-switch"><span class="toggle-knob"></span></span>
-              </button>
-            ` : ""}
+            ${
+              state.includeQuiz
+                ? `
+                  <button type="button" class="toggle-row toggle-answer-button ${state.includeQuizAnswer ? "is-on" : ""}">
+                    <span>
+                      <strong>퀴즈 정답도 함께 보내기</strong>
+                      <span class="toggle-subtext">끄면 문제만 보내고, 켜면 편지 맨 아래에 정답 확인칸을 넣어요.</span>
+                    </span>
+                    <span class="toggle-switch"><span class="toggle-knob"></span></span>
+                  </button>
+                `
+                : ""
+            }
 
-            <div class="info-chip summary-chip">${escapeHtml(getQuizSummary())}</div>
+            <div class="info-chip summary-chip">${escapeHtml(quizSummary)}</div>
           </div>
         </div>
       </article>
@@ -655,14 +604,7 @@ function writePage() {
 }
 
 function previewPage() {
-  const recipient = getCurrentRecipient();
-  const selectedQuiz = getSelectedQuiz();
-  const todayLabel = "2026년 4월 봄편지";
-  const quizLabel = state.includeQuiz
-    ? `${selectedQuiz.title} · ${state.includeQuizAnswer ? "정답 포함" : "정답 미포함"}`
-    : "퀴즈 없이 안부문구만 구성";
-  const { answerLine } = splitQuizContent(selectedQuiz);
-
+  const { recipient, selectedQuiz, quizSummary } = getFinalLetterData();
   return `
     <div class="page-stack">
       <article class="card preview-hero-card">
@@ -670,14 +612,13 @@ function previewPage() {
           <div class="section-title-row preview-hero-row">
             <div>
               <h3 class="card-title">실제 편지 최종시안</h3>
-              <p class="subtext">직접 작성한 메시지만 본문에 넣고, 퀴즈는 선택했을 때만 하단에 추가됩니다.</p>
+              <p class="subtext">사용자가 직접 쓴 내용만 본문에 들어가고, 퀴즈는 선택했을 때만 아래에 붙습니다.</p>
             </div>
             ${badge("1장 구성")}
           </div>
           <div class="preview-meta-grid">
             <div class="preview-meta-chip"><strong>수신인</strong><span>${escapeHtml(recipient.name)}</span></div>
-            <div class="preview-meta-chip"><strong>구성</strong><span>${escapeHtml(quizLabel)}</span></div>
-            <div class="preview-meta-chip"><strong>발송 시점</strong><span>${escapeHtml(todayLabel)}</span></div>
+            <div class="preview-meta-chip"><strong>퀴즈</strong><span>${escapeHtml(quizSummary)}</span></div>
           </div>
         </div>
       </article>
@@ -688,9 +629,9 @@ function previewPage() {
             <div class="letter-sheet-top">
               <div>
                 <div class="letter-brand">E음편지</div>
-                <div class="letter-season">${escapeHtml(todayLabel)}</div>
+                <div class="letter-season">2026년 4월 봄편지</div>
               </div>
-              <div class="letter-season">사진 + 메시지 1장</div>
+              <div class="letter-badge">실물 편지 1장</div>
             </div>
 
             <div class="letter-photo-block">
@@ -708,38 +649,29 @@ function previewPage() {
               <div class="letter-body-line">${escapeHtml(state.message)}</div>
             </div>
 
-            ${state.includeQuiz ? `
-              <div class="letter-quiz-section">
-                <div class="letter-quiz-title">함께 풀어보는 AI 두뇌퀴즈</div>
-                ${selectedQuiz.mode === "crossword"
-                  ? `
-                    <div class="letter-crossword-box">
-                      ${renderQuizPreview(selectedQuiz, "letter")}
-                    </div>
-                  `
-                  : `
-                    <div class="letter-quiz-lines">
-                      ${selectedQuiz.promptLines.map((line) => `<div class="letter-quiz-line">${escapeHtml(line)}</div>`).join("")}
-                    </div>
-                  `}
-              </div>
-            ` : ""}
+            ${state.includeQuiz ? renderLetterQuizBlock(selectedQuiz) : ""}
 
-            ${state.includeQuiz && state.includeQuizAnswer ? `
-              <div class="letter-answer-box">
-                <div class="letter-answer-label">정답 확인</div>
-                <!-- <div class="letter-answer-desc">문제 바로 아래에 두지 않고, 편지 맨 아래에서 천천히 확인할 수 있게 분리했어요.</div> --!>
-                <div class="letter-answer-text">${escapeHtml(answerLine)}</div>
-              </div>
-            ` : ""}
+            ${
+              state.includeQuiz && state.includeQuizAnswer
+                ? `
+                  <div class="letter-answer-box">
+                    <div class="letter-answer-label">정답 확인</div>
+                    <div class="letter-answer-desc">문제를 먼저 생각해본 뒤 아래에서 확인할 수 있게 분리했습니다.</div>
+                    <div class="letter-answer-text">${escapeHtml(selectedQuiz.answer)}</div>
+                  </div>
+                `
+                : ""
+            }
 
-            <!-- <div class="letter-footer-note">
-              ${state.includeQuiz
-                ? state.includeQuizAnswer
-                  ? "정답은 생각할 시간을 가질 수 있도록 편지 맨 아래 별도 칸에 분리했습니다."
-                  : "이번 편지에는 문제와 힌트만 넣고, 정답은 보내지 않도록 구성했습니다."
-                : "안부문구 중심으로 구성된 최종 시안입니다."}
-            </div> --!>
+            <div class="letter-footer-note">
+              ${
+                state.includeQuiz
+                  ? state.includeQuizAnswer
+                    ? "퀴즈와 정답이 함께 포함된 최종 시안입니다."
+                    : "퀴즈는 포함되고, 정답은 제외된 최종 시안입니다."
+                  : "안부문구 중심으로 구성된 최종 시안입니다."
+              }
+            </div>
           </div>
         </div>
       </article>
@@ -829,7 +761,6 @@ function historyPage() {
 
 function myPage() {
   const items = ["수신인 주소 관리", "기념일 알림 설정", "푸시 알림 설정", "결제수단 관리"];
-
   return `
     <div class="page-stack">
       <article class="card">
@@ -860,8 +791,10 @@ function myPage() {
 function renderPage() {
   ensureSelectedQuizExists();
   const meta = getScreenMeta();
+  const isHome = state.page === "home";
   $("#screenTitle").text(meta.title);
   $("#screenSubtitle").text(meta.subtitle);
+  $(".title-panel").toggle(!isHome);
   $(".nav-item").removeClass("is-active");
   const activeNavPage = state.page === "preview" ? "write" : state.page;
   $(`.nav-item[data-page="${activeNavPage}"]`).addClass("is-active");
@@ -917,7 +850,7 @@ $(function () {
     renderPage();
   });
 
-  $(document).on("click", ".suggestion-panel-toggle", function () {
+  $(document).on("click", ".suggestion-toggle-button", function () {
     state.suggestionPanelOpen = !state.suggestionPanelOpen;
     renderPage();
   });
@@ -968,9 +901,8 @@ $(function () {
   });
 
   $(document).on("click", ".complete-preview-button", function () {
-    const selectedQuiz = getSelectedQuiz();
     if (state.includeQuiz) {
-      showToast(`${selectedQuiz.title}${state.includeQuizAnswer ? "와 정답" : ""}이 반영된 최종 편지 시안을 확인 중이에요.`);
+      showToast(state.includeQuizAnswer ? "퀴즈와 정답이 포함된 최종 시안입니다." : "퀴즈만 포함된 최종 시안입니다.");
       return;
     }
     showToast("안부문구 중심 최종 편지 시안을 확인 중이에요.");
