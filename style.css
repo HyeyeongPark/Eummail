@@ -252,13 +252,26 @@ img {
   gap: 12px;
 }
 
-.hero-badge,
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  color: #5e5960;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
 .status-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 31px;
-  padding: 6px 12px;
+  /* min-height: 31px; */
+  padding: 6px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--white);
@@ -281,17 +294,9 @@ img {
 }
 
 .icon-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  background: var(--white);
   color: var(--accent);
-  font-size: 1.875rem;
-  box-shadow: 0 8px 16px rgba(89, 63, 70, 0.05);
+  font-size: 1.5rem;
+  
 }
 
 .soft-box {
@@ -302,6 +307,7 @@ img {
   background: var(--white);
   font-size: 0.875rem;
   color: #514850;
+  text-align: center;
 }
 
 .soft-box strong,

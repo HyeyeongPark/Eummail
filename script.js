@@ -33,7 +33,7 @@ const quizCatalog = {
       key: "season-word",
       mode: "text",
       title: "계절 낱말 퍼즐",
-      desc: "짧은 힌트를 보고 익숙한 낱말을 떠올리는 쉬운 문제",
+      desc: "힌트를 보고 낱말을 떠올리는 문제",
       level: "쉬움",
       promptLines: ["꽃이 피고 날이 따뜻해지는 계절은?", "초성 힌트: ㅂ"],
       answer: "봄",
@@ -42,7 +42,7 @@ const quizCatalog = {
       key: "fruit-word",
       mode: "text",
       title: "과일 낱말 퍼즐",
-      desc: "일상적인 먹거리 이름으로 부담 없이 푸는 문제",
+      desc: "먹거리 이름으로 부담 없이 푸는 문제",
       level: "쉬움",
       promptLines: ["노랗고 길쭉한 과일은?", "초성 힌트: ㅂㄴㄴ"],
       answer: "바나나",
@@ -51,7 +51,7 @@ const quizCatalog = {
       key: "kitchen-word",
       mode: "text",
       title: "생활 낱말 퍼즐",
-      desc: "집에서 자주 보는 물건을 떠올리는 문제",
+      desc: "자주 보는 물건을 떠올리는 문제",
       level: "보통",
       promptLines: ["밥 먹을 때 사용하는 긴 도구는?", "초성 힌트: ㅈㄱㄹ"],
       answer: "젓가락",
@@ -62,7 +62,7 @@ const quizCatalog = {
       key: "proverb-ricecake",
       mode: "text",
       title: "속담 빈칸 맞추기",
-      desc: "익숙한 속담의 마지막 말을 떠올리는 회상형 퀴즈",
+      desc: "속담의 말을 떠올리는 회상형 퀴즈",
       level: "쉬움",
       promptLines: ["보기 좋은 떡이 ________", "힌트: 먹는 것과 관련 있어요."],
       answer: "먹기도 좋다",
@@ -71,7 +71,7 @@ const quizCatalog = {
       key: "proverb-frog",
       mode: "text",
       title: "속담 이어 말하기",
-      desc: "앞부분을 보고 뒷부분을 떠올리는 짧은 문제",
+      desc: "앞부분을 보고 뒷부분을 떠올리는 문제",
       level: "보통",
       promptLines: ["개구리 올챙이 적 ________", "힌트: 지난 시절을 말해요."],
       answer: "생각 못 한다",
@@ -91,7 +91,7 @@ const quizCatalog = {
       key: "memory-season",
       mode: "text",
       title: "추억 회상 퀴즈",
-      desc: "계절과 음식, 일상을 떠올리게 하는 회상형 질문",
+      desc: "일상을 떠올리게 하는 회상형 질문",
       level: "쉬움",
       promptLines: ["가을에 많이 떠오르는 대표 과일은?", "힌트: 홍시로도 먹는 과일이에요."],
       answer: "감",
@@ -100,7 +100,7 @@ const quizCatalog = {
       key: "memory-market",
       mode: "text",
       title: "일상 회상 카드",
-      desc: "예전 시장과 집안 풍경을 떠올리는 부드러운 질문",
+      desc: "예전 풍경을 떠올리는 부드러운 질문",
       level: "쉬움",
       promptLines: ["어릴 때 장 보러 자주 가던 곳은?", "힌트: 동네에 있던 큰 장터를 떠올려 보세요."],
       answer: "시장",
@@ -109,7 +109,7 @@ const quizCatalog = {
       key: "memory-family",
       mode: "text",
       title: "가족 이야기 퀴즈",
-      desc: "가족과 계절 추억을 연결해 답하는 따뜻한 문제",
+      desc: "가족과 추억을 연결해 답하는 따뜻한 문제",
       level: "보통",
       promptLines: ["명절 아침에 가장 먼저 떠오르는 음식은?", "힌트: 뜨끈한 국물이 있는 메뉴예요."],
       answer: "떡국",
@@ -120,7 +120,7 @@ const quizCatalog = {
       key: "cross-spring",
       mode: "crossword",
       title: "봄날 십자낱말",
-      desc: "칸 수와 정답 글자 수가 정확히 맞는 쉬운 십자낱말",
+      desc: "쉬운 단어의 십자낱말 퀴즈",
       level: "쉬움",
       rows: 4,
       cols: 5,
@@ -136,7 +136,7 @@ const quizCatalog = {
       key: "cross-memory",
       mode: "crossword",
       title: "추억 십자낱말",
-      desc: "칸 수와 단어 길이가 자연스럽게 맞는 회상형 십자낱말",
+      desc: "회상형 단어의 십자낱말 퀴즈",
       level: "보통",
       rows: 4,
       cols: 5,
@@ -370,32 +370,38 @@ function getScreenMeta() {
   switch (state.page) {
     case "write":
       return {
+        show: true,
         title: "편지 작성",
-        subtitle: "메시지를 먼저 쓰고, 필요하면 아래에서 AI 안부문구 추천과 두뇌퀴즈를 추가하세요.",
+        subtitle: "안부 편지를 작성하고 퀴즈도 함께 보낼 수 있어요. ",
       };
     case "preview":
       return {
-        title: "최종 편지 시안",
-        subtitle: "실제 우편으로 제작될 편지 구성을 한눈에 확인하세요.",
+        show: true,
+        title: "편지 내용 확인",
+        subtitle: "작성한 편지를 보내기 전 확인하세요.",
       };
     case "subscribe":
       return {
+        show: true,
         title: "정기 구독 관리",
         subtitle: "매달 잊지 않고 안부를 전할 수 있어요.",
       };
     case "history":
       return {
+        show: true,
         title: "발송 내역",
-        subtitle: "보낸 편지와 배송 상태를 확인하세요.",
+        subtitle: "추억을 나눈 횟수: 3회",
       };
     case "mypage":
       return {
+        show: true,
         title: "내 정보",
         subtitle: "알림, 수신인, 결제 설정을 관리하세요.",
       };
     case "home":
     default:
       return {
+        show: false,
         title: "마음을 잇다",
         subtitle: "E음편지로 안부문구와 두뇌퀴즈를 같은 1장 안에 함께 담아보세요.",
       };
@@ -416,8 +422,8 @@ function homePage() {
           <div class="hero-top">
             <div>
               ${badge("정기구독 중")}
-              <h3 class="hero-title">마음을 잇는<br />실물 편지 구독</h3>
-              <p class="hero-description">사진과 짧은 메시지 아래에 원하는 경우 AI 두뇌퀴즈를 같은 1장 안에 함께 넣어 전달합니다.</p>
+              <h3 class="hero-title">마음을 달래는<br />따뜻한 안부</h3>
+              <p class="hero-description">모바일로 간편하게 사용해보세요<br>소중한 추억을 보내드립니다.</p>
             </div>
             <div class="icon-box">✉</div>
           </div>
@@ -524,7 +530,7 @@ function renderQuizCards() {
             <span class="hero-badge">${escapeHtml(quiz.level)}</span>
           </div>
           ${renderQuizPreview(quiz)}
-          <div class="quiz-answer-note">정답은 바로 아래에 붙지 않아요 · ${escapeHtml(answerLine)}</div>
+          <div class="quiz-answer-note">· ${escapeHtml(answerLine)}</div>
         </button>
       `;
     })
@@ -629,7 +635,7 @@ function writePage() {
             <button type="button" class="toggle-row toggle-quiz-button${state.includeQuiz ? " is-on" : ""}">
               <div>
                 <strong>편지 하단에 퀴즈 추가하기</strong>
-                <span class="toggle-subtext">추가 비용 없이 같은 1장 안에 함께 구성됩니다.</span>
+                <span class="toggle-subtext">추가비용 없이 편지와 함께 보내요</span>
               </div>
               <span class="toggle-switch"><span class="toggle-knob"></span></span>
             </button>
@@ -638,7 +644,7 @@ function writePage() {
               <button type="button" class="toggle-row toggle-answer-button${state.includeQuizAnswer ? " is-on" : ""}" style="margin-top: 10px;">
                 <div>
                   <strong>퀴즈 정답도 함께 보내기</strong>
-                  <span class="toggle-subtext">정답은 문제 바로 아래가 아니라 편지 맨 아래 별도 칸에 넣어요.</span>
+                  <span class="toggle-subtext">정답은 하단의 별도 칸에 넣어요.</span>
                 </div>
                 <span class="toggle-switch"><span class="toggle-knob"></span></span>
               </button>
@@ -660,7 +666,7 @@ function previewPage() {
   const todayLabel = "2026년 4월 봄편지";
   const quizLabel = state.includeQuiz
     ? `${selectedQuiz.title} · ${state.includeQuizAnswer ? "정답 포함" : "정답 미포함"}`
-    : "퀴즈 없이 안부문구만 구성";
+    : "퀴즈없이 안부편지만";
   const { answerLine } = splitQuizContent(selectedQuiz);
 
   return `
@@ -669,10 +675,9 @@ function previewPage() {
         <div class="card-body">
           <div class="section-title-row preview-hero-row">
             <div>
-              <h3 class="card-title">실제 편지 최종시안</h3>
-              <p class="subtext">직접 작성한 메시지만 본문에 넣고, 퀴즈는 선택했을 때만 하단에 추가됩니다.</p>
+              <h3 class="card-title">발송 정보</h3>
             </div>
-            ${badge("1장 구성")}
+            <!-- ${badge("1장구성")} -->
           </div>
           <div class="preview-meta-grid">
             <div class="preview-meta-chip"><strong>수신인</strong><span>${escapeHtml(recipient.name)}</span></div>
@@ -710,7 +715,7 @@ function previewPage() {
 
             ${state.includeQuiz ? `
               <div class="letter-quiz-section">
-                <div class="letter-quiz-title">함께 풀어보는 AI 두뇌퀴즈</div>
+                <div class="letter-quiz-title">함께 풀어보는 AI퀴즈</div>
                 ${selectedQuiz.mode === "crossword"
                   ? `
                     <div class="letter-crossword-box">
@@ -754,9 +759,9 @@ function previewPage() {
 
 function subscribePage() {
   const plans = [
-    ["월 1회", "가볍게 안부 전하기", "1,900원"],
-    ["월 2회", "더 자주 마음 전하기", "3,900원"],
-    ["기념일 플랜", "생신·명절 자동 발송", "2,900원"],
+    ["월 1회", "가볍게 안부 전하기", "3,300원"],
+    ["월 2회", "자주 마음 전하기", "6,200원"],
+    ["월 3회", "더 자주 마음 전하기", "8,900원"],
   ];
 
   return `
@@ -765,7 +770,7 @@ function subscribePage() {
         <div class="card-body">
           <h3 class="card-title">현재 구독 플랜</h3>
           <div class="hero-title" style="font-size: 28px; margin-top: 14px; color: var(--accent-deep);">월 1회 정기 편지</div>
-          <p class="hero-description">매월 15일 발송 · 월 1,900원</p>
+          <p class="hero-description">매월 15일 발송 · 월 3,300원</p>
         </div>
       </article>
 
@@ -860,8 +865,15 @@ function myPage() {
 function renderPage() {
   ensureSelectedQuizExists();
   const meta = getScreenMeta();
-  $("#screenTitle").text(meta.title);
-  $("#screenSubtitle").text(meta.subtitle);
+
+  if(meta.show){
+    $("#screenTitle").text(meta.title);
+    $("#screenSubtitle").text(meta.subtitle);
+    $("#screenTitlePanelBody").show();
+  }else{
+    $("#screenTitlePanelBody").hide();
+  }
+  
   $(".nav-item").removeClass("is-active");
   const activeNavPage = state.page === "preview" ? "write" : state.page;
   $(`.nav-item[data-page="${activeNavPage}"]`).addClass("is-active");
