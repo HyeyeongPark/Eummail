@@ -15,7 +15,7 @@ const recipients = [
 ];
 
 const sentHistory = [
-  { date: "2026.03.15", title: "봄 안부 엽서", status: "배송완료" },
+  { date: "2026.03.15", title: "봄날 안부 편지", status: "배송완료" },
   { date: "2026.02.14", title: "손주 사진 편지", status: "배송완료" },
   { date: "2026.01.01", title: "새해 인사 편지", status: "배송완료" },
 ];
@@ -389,7 +389,7 @@ function getScreenMeta() {
     case "history":
       return {
         show: true,
-        title: "발송 내역",
+        title: "안부 상태",
         subtitle: "추억을 나눈 횟수: 3회",
       };
     case "mypage":
@@ -432,7 +432,7 @@ function homePage() {
       </article>
 
       <div class="grid-2">
-        <button type="button" class="card action-card page-link" data-page="write">
+        <button type="button" class="card action-card page-link hover-bg" data-page="write">
           <div class="card-body">
             <div class="icon">✎</div>
             <div class="history-title" style="margin-top: 14px;">새 편지 작성</div>
@@ -440,7 +440,7 @@ function homePage() {
           </div>
         </button>
 
-        <button type="button" class="card action-card page-link" data-page="subscribe">
+        <button type="button" class="card action-card page-link hover-bg" data-page="subscribe">
           <div class="card-body">
             <div class="icon">🗓</div>
             <div class="history-title" style="margin-top: 14px;">정기 구독 관리</div>
@@ -469,7 +469,7 @@ function homePage() {
               <h3 class="card-title">함께 보낼 수 있는 AI 두뇌퀴즈</h3>
               <p class="subtext">낱말퍼즐, 속담퀴즈, 회상형 질문, 십자낱말까지 자동 추천합니다.</p>
             </div>
-            <button type="button" class="link-button page-link" data-page="write">바로 선택</button>
+            <button type="button" class="link-button page-link hover-fw" data-page="write" data-scroll-target="quiz-section">바로 선택</button>
           </div>
           <div class="info-chip">추천 예시: <strong>${escapeHtml(selectedQuiz.title)}</strong> · ${escapeHtml(selectedQuiz.desc)}</div>
         </div>
@@ -479,8 +479,9 @@ function homePage() {
         <div class="card-body">
           <div class="section-title-row">
             <h3 class="card-title">발송 내역</h3>
-            <button type="button" class="link-button page-link" data-page="history">전체보기</button>
+            <button type="button" class="link-button page-link hover-fw" data-page="history">전체보기</button>
           </div>
+          
           <div class="history-list">
             ${sentHistory
               .slice(0, 2)
@@ -613,7 +614,7 @@ function writePage() {
 
       
 
-      <article class="card">
+      <article class="card" id="quiz-section">
         <div class="card-body">
           <div class="section-title-row">
             <div>
@@ -769,7 +770,7 @@ function subscribePage() {
       <article class="card" style="background: linear-gradient(135deg, #ffffff 0%, #fbe8ee 100%);">
         <div class="card-body">
           <h3 class="card-title">현재 구독 플랜</h3>
-          <div class="hero-title" style="font-size: 28px; margin-top: 14px; color: var(--accent-deep);">월 1회 정기 편지</div>
+          <div class="hero-title" style="font-size: 25px; font-weight:600; margin-top: 8px; color: var(--accent-deep);">월 1회 정기 편지</div>
           <p class="hero-description">매월 15일 발송 · 월 3,300원</p>
         </div>
       </article>
@@ -810,16 +811,22 @@ function subscribePage() {
 function historyPage() {
   return `
     <div class="page-stack">
+      <div class="ai-history-view">
+        <span>AI 안부 분석</span>
+        <h5>현재 상태는 안정적이에요</h5>
+        <p>최근 3회 모두 정상 수령되었고, 전달 패턴에 특이사항이 없어요.</p>
+      </div>
       ${sentHistory
         .map(
           (item) => `
+          
             <article class="card">
               <div class="card-body">
                 <div class="section-title-row">
                   <div>
                     <div class="history-meta">${escapeHtml(item.date)}</div>
                     <div class="history-title">${escapeHtml(item.title)}</div>
-                    <div class="option-desc">우체국 제작 및 발송 완료</div>
+                    
                   </div>
                   ${badge(item.status)}
                 </div>
@@ -903,6 +910,90 @@ function renderPage() {
 
   $("#pageRoot").html(html);
 }
+
+// hoem 에서 ai퀴즈 바로가기 선택
+// $(document).on("click", ".nav-item, .page-link", function () {
+//   const nextPage = $(this).data("page");
+//   const scrollTarget = $(this).data("scroll-target");
+
+//   if (!nextPage) return;
+
+//   state.page = String(nextPage);
+//   renderPage();
+
+//   if (scrollTarget) {
+//     requestAnimationFrame(() => {
+//       const $target = $("#" + scrollTarget);
+//       if ($target.length) {
+//         $target[0].scrollIntoView({
+//           block: "start",
+//         });
+//       }
+//     });
+//   }
+// });
+
+$(document).on("click", ".nav-item, .page-link", function () {
+  const nextPage = $(this).data("page");
+  const scrollTarget = $(this).data("scroll-target");
+  const isBottomTab = $(this).hasClass("nav-item");
+
+  moveToPage(nextPage, {
+    scrollTarget,
+    allowTargetScroll: !isBottomTab,
+  });
+});
+
+$(document).on("click", ".preview-button", function () {
+  moveToPage("preview");
+});
+
+function resetPageScroll() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
+  [
+    ".app-screen",
+    ".screen-body",
+    ".page-root",
+    "#pageRoot",
+    ".content",
+    ".page-stack"
+  ].forEach((selector) => {
+    const el = document.querySelector(selector);
+    if (el) {
+      el.scrollTop = 0;
+    }
+  });
+}
+
+function moveToPage(nextPage, options = {}) {
+  const { scrollTarget = null, allowTargetScroll = false } = options;
+
+  if (!nextPage) return;
+
+  state.page = String(nextPage);
+  renderPage();
+
+  requestAnimationFrame(() => {
+    if (allowTargetScroll && scrollTarget) {
+      const target = document.getElementById(scrollTarget);
+      if (target) {
+        target.scrollIntoView({
+          block: "start",
+          behavior: "auto",
+        });
+        return;
+      }
+    }
+
+    resetPageScroll();
+  });
+}
+
+
+
 
 function showToast(message) {
   let $toast = $(".menu-toast");
@@ -995,4 +1086,5 @@ $(function () {
   $(".menu-button").on("click", function () {
     showToast("메뉴 기능은 아직 연결 전이에요.");
   });
+  
 });
